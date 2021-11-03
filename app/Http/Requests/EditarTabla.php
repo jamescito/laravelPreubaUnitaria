@@ -24,13 +24,12 @@ class EditarTabla extends FormRequest
     public function rules()
     {
         return [
-            
-            "codigocliente"=>"required|unique:clientedos,codigocliente,".$this->route('clientedos')->id,
+            'codigocliente'=>'required|unique:clientedos,codigocliente,'.$this->route('cliente')->id,
             //"codigoCarnet"=>"required|unique:estudiantes,codigoCarnet,".$this->route('estudiante')->id,
-            "Nombre"=>"required",
-            "apellido"=>"required",
-            "direccion"=>"required",
-            "telefono"=>"required",
+            'Nombre'=>'required',
+            'apellido'=>'required',
+            'direccion'=>'required',
+            'telefono'=>'required'
         ];
     }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\API\ClienteController;
 |
 */
 Route::post('cliente',[ClienteController::class,'store']);
+Route::get('cliente',[ClienteController::class,'index']);
 Route::put('clientes/{cliente}',[ClienteController::class,'update']);
 Route::delete('clientes/{cliente}',[ClienteController::class,'destroy']);
 //Route::put('estudiantes/{estudiante}',[EstudianteController::class,'update']);

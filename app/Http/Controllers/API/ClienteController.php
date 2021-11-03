@@ -57,13 +57,26 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditarTabla $request, Clientedos $cliente)
+    public function update(Request $request, $id)
     {
-        $cliente->update($request->all());
-        return response()->json([
-            'res'=>true,
-            'mensaje'=>'Estudiante actualizado exitosamente'
-        ],200);
+        $request->validate([
+            'codigocliente'=>'required',
+            //"codigoCarnet"=>"required|unique:estudiantes,codigoCarnet,".$this->route('estudiante')->id,
+            'Nombre'=>'required',
+            'apellido'=>'required',
+            'direccion'=>'required',
+            'telefono'=>'required'
+        ]);
+
+        $cliente= Clientedos::find($id);
+        $cliente->Nombre=$request->Nombre;
+        $cliente->apellido=$request->apellido;
+        $cliente->direccion=$request->direccion;
+        $cliente->telefono=$request->telefono;
+        $cliente->telefono=$request->telefono;
+        $cliente->update();
+        return response()->json(['message'=>'Editado correctamente'],200);
+
     }
 
     /**
