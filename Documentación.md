@@ -36,3 +36,11 @@ Y para finalizar el delete este es para eliminar, aqui al igual que editar le pa
 
 ![Imagen](image/cuatro.png)
 
+
+Ahora sigue lo que es los test con unit, para esto nos vamos a la carpeta unit creamos</br> un archivo "php artisan make:Test clienteTest --unit" y listo, dentro de el creamos una</br> funcion que se llama "test_database" y dentro de ella con this->assertDatabaMissing</br> le decimos que busque una base de datos llamada clientedos y le pasamos los parametro,</br>  por ultimo lo ejecutamos con "php artisan test" y podemos ver como resultado que nos funciono</br> correctamete, esta forma de test es prueba uno por uno.
+
+
+![Imagen](image/doce.png)
+
+![Imagen](image/diez.png)
+

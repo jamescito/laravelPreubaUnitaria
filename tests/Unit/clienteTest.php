@@ -13,10 +13,15 @@ class clienteTest extends TestCase
      *
      * @return void
      */
-    public function test_un_cliente_tiene_mucho_posts()
-    {
-        $cliente= new Clientedos;
+    
 
-        $this->assertInstanceOf(Collection::class, $cliente->posts);
+    public function test_database()
+    {
+        $this->assertDatabaseMissing('clientedos',[
+            'codigocliente'=>'02',   
+            'Nombre'=>'jesler',   
+            'direccion'=>'fonseca',   
+            'telefono'=>'87654',   
+        ]);
     }
 }
