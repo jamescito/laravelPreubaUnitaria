@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTabla extends FormRequest
+class EditarTabla extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,13 @@ class StoreTabla extends FormRequest
     public function rules()
     {
         return [
-            "codigocliente"=>"required|unique:clientedos,codigocliente",
+            
+            "codigocliente"=>"required|unique:clientedos,codigocliente,".$this->route('clientedos')->id,
+            //"codigoCarnet"=>"required|unique:estudiantes,codigoCarnet,".$this->route('estudiante')->id,
             "Nombre"=>"required",
             "apellido"=>"required",
             "direccion"=>"required",
             "telefono"=>"required",
-            
         ];
     }
 }

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreTabla;
-use App\Models\Cliente;
+//use App\Http\Requests\EditarTabla;
+use App\Http\Requests\EditarTabla;
+use App\Models\Clientedos;
 
 
 class ClienteController extends Controller
@@ -18,7 +20,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        
+        $cliente=Clientedos::query()->paginate(6);
+        return response($cliente,200);
     }
 
     /**
@@ -29,7 +32,7 @@ class ClienteController extends Controller
      */
     public function store(StoreTabla $request)
     {
-        Cliente::create($request->all());
+        Clientedos::create($request->all());
         return response()->json([
             'res'=>true,
             'mensaje'=>'Cliente guardado exitosamente'
@@ -54,9 +57,13 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditarTabla $request, Clientedos $cliente)
     {
-        //
+        $cliente->update($request->all());
+        return response()->json([
+            'res'=>true,
+            'mensaje'=>'Estudiante actualizado exitosamente'
+        ],200);
     }
 
     /**
@@ -65,8 +72,12 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Clientedos $cliente)
     {
-        //
+        $cliente->delete();
+        return response()->json([
+            'res'=>true,
+            'mensaje'=>'Cliente Eliminado exitosamente'
+        ]);
     }
 }
