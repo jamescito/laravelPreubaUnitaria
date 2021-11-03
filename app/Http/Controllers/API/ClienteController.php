@@ -5,6 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreTabla;
+use App\Models\Cliente;
+
+
 class ClienteController extends Controller
 {
     /**
@@ -14,8 +18,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $cliente= new Cliente();
-        return response($cliente,200);
+        
     }
 
     /**
@@ -24,18 +27,12 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTabla $request)
     {
-        $cliente= new Cliente();
-        $cliente->Nombre=$request->get('Nombre');
-        $cliente->apellido=$request->get('apellido');
-        $cliente->direccion=$request->get('direccion');
-        $cliente->telefono=$request->get('telefono');
-        $cliente->email=$request->get('email');
-        $cliente->save();
+        Cliente::create($request->all());
         return response()->json([
             'res'=>true,
-            'mensaje'=>'Estudiante guardado exitosamente'
+            'mensaje'=>'Cliente guardado exitosamente'
         ]); 
     }
 
